@@ -129,7 +129,7 @@ bool LoginSystem::loginMenu(){
     return up;
 }
 
-void LoginSystem::display_UI(){
+string LoginSystem::display_UI(){
     
 bool up = loginMenu();
     char input = '=';
@@ -184,7 +184,7 @@ bool up = loginMenu();
     
             } while (cin >> input && (input != '='));
 
-            if (loginUser(username, password)) break;
+            if (loginUser(username, password)) return username;
         }
     } else if (!up){
         while (true){
@@ -233,7 +233,7 @@ bool up = loginMenu();
     
             } while (cin >> input && (input != '='));
 
-            if (registerUser(username, password)) break;
+            if (registerUser(username, password)) return username;
         }
     }
 }

@@ -28,7 +28,7 @@ private:
 
 public:
     LoginSystem();
-    void display_UI();
+    string display_UI();
     bool loginMenu();
 };
 

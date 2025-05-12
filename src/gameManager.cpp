@@ -19,5 +19,11 @@ void GameManager::run_start(){
 
 void GameManager::run_login(){
     LoginSystem loginSystem_UI;
-    loginSystem_UI.display_UI();
+    user = loginSystem_UI.display_UI();
+    run_main_menu();
+}
+
+void GameManager::run_main_menu(){
+    MainMenu mainMenu_UI;
+    int choice = mainMenu_UI.display_UI();
 }
