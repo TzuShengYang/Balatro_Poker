@@ -5,7 +5,9 @@
 using namespace std;
 
 void LoginSystem::initUserFile(){
-    ifstream infile(userFile);
+    ifstream infile(userFile); // open users.json file
+
+    // if the file is "not good", then initialize the .json file
     if (!infile.good()) {
         ofstream outfile(userFile);
         outfile << "{}";
@@ -14,6 +16,7 @@ void LoginSystem::initUserFile(){
 }
 
 json LoginSystem::loadUsers(){
+    // to find the user in users.json file
     ifstream file(userFile);
     json users;
     file >> users;
@@ -21,24 +24,29 @@ json LoginSystem::loadUsers(){
 }
 
 void LoginSystem::saveUsers(const json& users){
+    // add the user into ussers.json (have to check whether the user is exist)
     ofstream file(userFile);
     file << users.dump(4);
 }
 
 LoginSystem::LoginSystem(){
-    userFile = "users.json";
+    userFile = "users.json"; // filename
     initUserFile();
 }
 
 bool LoginSystem::registerUser(const string& username, const string& password){
     json users = loadUsers();
     char temp;
+
+    // user not found
     if (users.contains(username)) {
         cout << "Username already EXISTS\n";
         cout << "Press any key to register again...";
         cin >> temp;
         return false;
     }
+
+    //user found in users.json
     users[username] = { {"password", password} };
     saveUsers(users);
     cout << "Register successfully!!\n";
@@ -50,6 +58,8 @@ bool LoginSystem::registerUser(const string& username, const string& password){
 bool LoginSystem::userExist(const string& username){
     json users = loadUsers();
     char temp;
+
+    // user not found
     if (!users.contains(username)){
         cout << "Username NOT FOUND!\n";
         cout << "Press any key to enter username again...";
@@ -75,6 +85,7 @@ bool LoginSystem::loginUser(const string& username, const string& password) {
 }
 
 bool LoginSystem::validInput(char input){
+    // only 0 ~ 9, a~z, A~Z are valid input letter
     return (input > 47 && input < 58) || (input > 64 && input < 91) || (input > 96 && input < 123);
 }
 
@@ -92,7 +103,7 @@ bool LoginSystem::loginMenu(){
         cout << "  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝     ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝\n\n\n";
         cout << "\n\n";
 
-        //using w and s to controll the selected button
+        //using w and s to control the selected button
         if (input == 'W' || input == 'w'){ 
             up = true;
             cout << "                                    #===============================#\n";
@@ -126,13 +137,15 @@ bool LoginSystem::loginMenu(){
         }
     } while (cin >> input && (input != '='));
 
-    return up;
+    return up; // return the user choice
 }
 
 string LoginSystem::display_UI(){
     
 bool up = loginMenu();
     char input = '=';
+
+    // Login choice
     if (up){
         string username;
         string password;
@@ -141,7 +154,8 @@ bool up = loginMenu();
             username = "";
             password = "";
             do {
-                if (input == '-' && username.length() > 0) username = username.substr(0, username.length() - 1);
+                if (input == '-' && username.length() > 0) username = username.substr(0, username.length() - 1); // using '-' to delete the input
+                else if (input == '`' && username.length() == 0) return "_"; // using '`' to back to the starting menu when no input
                 else if (validInput(input)) username += input;
     
                 system("clear");
@@ -193,7 +207,8 @@ bool up = loginMenu();
             string password = "";
     
             do {
-                if (input == '-' && username.length() > 0) username = username.substr(0, username.length() - 1);
+                if (input == '-' && username.length() > 0) username = username.substr(0, username.length() - 1); // using '-' to delete the input
+                else if (input == '`' && username.length() == 0) return "_"; // using '`' to back to the starting menu when no input
                 else if (validInput(input)) username += input;
     
                 system("clear");

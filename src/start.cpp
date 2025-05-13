@@ -5,6 +5,10 @@
 
 using namespace std;
 
+void start::showRule(){
+    // to do...
+}
+
 void start::display(){
     system("clear");
     cout << "\n\n";
@@ -20,5 +24,7 @@ void start::display(){
     char input = ' '; 
     while (input != '=') cin >> input;
 
+    showRule();
+    
     return;
 }

@@ -20,7 +20,8 @@ void GameManager::run_start(){
 void GameManager::run_login(){
     LoginSystem loginSystem_UI;
     user = loginSystem_UI.display_UI();
-    run_main_menu();
+    if (user == "_") run_start();
+    else run_main_menu();
 }
 
 void GameManager::run_main_menu(){

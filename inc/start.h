@@ -8,6 +8,8 @@ using namespace std;
 
 
 class start{
+    private:
+        void showRule();
     public:
         void display();
 };
