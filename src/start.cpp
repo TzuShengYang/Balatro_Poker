@@ -10,15 +10,6 @@ void start::showRule(){
     char input = ' ';
     int num = 1;
     while (input != '=' || num != 5) {
-        cin >> input;
-        if (input == 'D' || input == 'd') {
-            if (num == 5) continue;
-            num += 1;
-        } else if (input == 'A' || input == 'a') {
-            if (num == 1) continue;
-            num -= 1;
-        }
-
         switch (num) {
             case 1:
                 system("clear");
@@ -111,7 +102,17 @@ void start::showRule(){
                 cout << "║                                                                                                       ║\n";
                 cout << "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════╝\n";
         }
+        
+        cin >> input;
+        if (input == 'D' || input == 'd') {
+            if (num == 5) continue;
+            num += 1;
+        } else if (input == 'A' || input == 'a') {
+            if (num == 1) continue;
+            num -= 1;
+        }
     }
+    
     return;
 }
 
