@@ -13,8 +13,6 @@ using namespace std;
 class LoginSystem{
 private:
     string userFile;
-    //vector<button> buttons;
-    int buttonIndex;
 
     void initUserFile();
     json loadUsers();

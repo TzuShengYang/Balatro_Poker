@@ -4,6 +4,7 @@
 #include "start.h"
 #include "loginSystem.h"
 #include "mainMenu.h"
+#include "quit.h"
 
 class GameManager{
     private:
@@ -13,6 +14,10 @@ class GameManager{
         void run_start();
         void run_login();
         void run_main_menu();
+        void run_quit();
+        void run_setting();
+        void run_store();
+        void run_poker();
 
     public:
         void run_game();
