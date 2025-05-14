@@ -26,5 +26,31 @@ void GameManager::run_login(){
 
 void GameManager::run_main_menu(){
     MainMenu mainMenu_UI;
-    int choice = mainMenu_UI.display_UI();
+    int choice = mainMenu_UI.display_UI(user);
+    switch (choice){
+        case 0:
+            run_quit();
+            break;
+        /*
+        case 1:
+            run_poker();
+            break;
+        case 2:
+            run_store();
+            break;
+        case 3:
+            run_setting();
+            break;
+        */
+        default:
+            break;
+    }
+}
+
+void GameManager::run_quit(){
+    Quit quit_UI;
+    int choice = quit_UI.display_UI();
+    if (choice){
+        run_main_menu();
+    }
 }
