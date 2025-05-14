@@ -6,7 +6,8 @@
 using namespace std;
 
 void start::showRule(){
-    // to do...
+    cout << "\n\n";
+    cout << "Use WASD";
 }
 
 void start::display(){
