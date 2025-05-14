@@ -9,7 +9,7 @@ void start::showRule(){
     system("clear");
     char input = ' ';
     int num = 1;
-    while (input != '=' && num != 3) {
+    while (input != '=' || num != 3) {
         cin >> input;
         if (input == 'D' || input == 'd') {
             if (num == 3) continue;
